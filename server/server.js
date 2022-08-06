@@ -5,9 +5,10 @@ require("dotenv").config({ path: "./config/config.env" });
 const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
-
 // get driver connection
 const dbo = require("./config/conn");
+
+app.use("/api/todo/v1", require("./controllers/todoController"));
 
 app.listen(port, () => {
   // perform a database connection when server starts
