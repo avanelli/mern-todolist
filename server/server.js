@@ -8,12 +8,6 @@ app.use(express.json());
 // get driver connection
 const dbo = require("./config/conn");
 
-const controller = require("./controllers/todoController");
-/*
-seguire questo esempio :https://github.com/expressjs/express/blob/master/examples/multi-router/index.js
-app.get("/", (req, res) => {
-  controller.getTodos(req, res);
-});*/
 app.use("/api/todo/v1", require("./controllers/todoController"));
 
 app.listen(port, () => {
