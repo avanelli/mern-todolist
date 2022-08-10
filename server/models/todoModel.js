@@ -24,7 +24,18 @@ function findById(id) {
   });
 }
 
+function add(todo) {
+  return new Promise((resolve, reject) => {
+    const db = dbo.getDb();
+    db.collection("todo_objects").insertOne(todo, function (err, result) {
+      if (err) reject(err);
+      resolve(result);
+    });
+  });
+}
+
 module.exports = {
   find,
   findById,
+  add,
 };
