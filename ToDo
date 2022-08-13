@@ -7,4 +7,19 @@ Server:
 https://gist.github.com/sjosephrw/5bc7efbf4c332070165c61dba253288d
 https://www.codecontinue.com/article/deploy-react-node-mern-full-stack-app-to-digital-ocean
 
+Lint ESLint
 
+Unit Test Jest
+
+Git Hooks
+https://medium.com/@jeanycyang/js-in-pipeline-5-testing-linting-and-git-hooks-f11108816611
+
+
+React:
+Use config value for api endpoint
+Enhace visual with bootstrap
+
+Functionalities
+- pagination
+- order by
+- login
