@@ -20,6 +20,7 @@ Use config value for api endpoint
 Enhace visual with bootstrap
 
 Functionalities
+- confirm delete
 - pagination
 - order by
 - login
