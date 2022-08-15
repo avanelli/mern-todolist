@@ -7,19 +7,22 @@ const client = new MongoClient(Db, {
 
 let _db
 
-module.exports = {
-  connectToServer: function (callback) {
-    client.connect(function (err, db) {
-      // Verify we got a good "db" object
-      if (db) {
-        _db = db.db(process.env.ATLAS_DB)
-        console.log('Successfully connected to MongoDB.')
-      }
-      return callback(err)
-    })
-  },
-
-  getDb: function () {
-    return _db
+async function connectToServer () {
+  try {
+    // Use connect method to connect to the Server
+    await client.connect()
+    _db = client.db(process.env.ATLAS_DB)
+    console.log('Successfully connected to MongoDB.')
+  } catch (err) {
+    console.log(err.stack)
   }
+}
+
+function getDb () {
+  return _db
+}
+
+module.exports = {
+  connectToServer,
+  getDb
 }
