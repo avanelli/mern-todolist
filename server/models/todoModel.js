@@ -3,6 +3,7 @@ const ObjectId = require('mongodb').ObjectId
 
 function find () {
   return new Promise((resolve, reject) => {
+    // add try catch
     const db = dbo.getDb()
     db.collection('todo_objects')
       .find({})
@@ -10,6 +11,8 @@ function find () {
         if (err) reject(err)
         resolve(result)
       })
+  }).catch(function (error) {
+    console.log(error)
   })
 }
 

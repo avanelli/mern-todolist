@@ -7,7 +7,7 @@ Server:
 https://gist.github.com/sjosephrw/5bc7efbf4c332070165c61dba253288d
 https://www.codecontinue.com/article/deploy-react-node-mern-full-stack-app-to-digital-ocean
 
-Lint ESLint
+[X] Linter Standard JS 
 
 Unit Test Jest
 
