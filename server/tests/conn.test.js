@@ -1,9 +1,4 @@
 
-/*
-afterAll(async () => {
-  await dbo.close()
-  })
-*/
 describe('Test MongoDB connection', function () {
   jest.setTimeout(30000)
   const OLD_ENV = process.env
@@ -17,6 +12,7 @@ describe('Test MongoDB connection', function () {
 
   test('working connection', async () => {
     const dbo = require('../config/conn')
+
     await expect(dbo.connectToServer())
       .resolves.not.toThrow()
   })
