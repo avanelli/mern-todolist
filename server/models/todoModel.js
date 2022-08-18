@@ -11,8 +11,6 @@ function find () {
         if (err) reject(err)
         resolve(result)
       })
-  }).catch(function (error) {
-    console.log(error)
   })
 }
 
