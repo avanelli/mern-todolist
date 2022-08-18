@@ -1,8 +1,12 @@
+const bodyParser = require('body-parser')
+const express = require('express')
+const app = express()
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
 const dbo = require('../config/conn')
 const request = require('supertest')
 const todoapiv1 = require('../controllers/todoController')
-const express = require('express')
-const app = express()
 
 const apiPath = '/api/todo/v1'
 app.use(apiPath, todoapiv1)
@@ -27,7 +31,7 @@ describe('Test Todo REST routes', function () {
       .expect('Content-Type', /json/)
       .expect(200)
     console.log(res.body)
-    expect(res.body).toEqual('hello world!')
+    expect(res.body.insertedId).toEqual('hello world!')
   })
 
   test('responds empty array to GET /', async () => {

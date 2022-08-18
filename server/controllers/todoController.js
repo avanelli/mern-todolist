@@ -26,7 +26,6 @@ async function getTodo (req, res, id) {
 }
 
 async function addTodo (req, res) {
-  console.log(req)
   try {
     const newtodo = {
       title: req.body.title,
