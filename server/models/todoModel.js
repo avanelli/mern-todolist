@@ -1,66 +1,33 @@
 const dbo = require('../config/conn')
 const ObjectId = require('mongodb').ObjectId
+const collection = 'todo_objects'
 
-function find () {
-  return new Promise((resolve, reject) => {
-    // add try catch
-    const db = dbo.getDb()
-    db.collection('todo_objects')
-      .find({})
-      .toArray(function (err, result) {
-        if (err) reject(err)
-        resolve(result)
-      })
-  }).catch(function (error) {
-    console.log(error)
-  })
+async function find () {
+  return await dbo.getDb().collection(collection)
+    .find({})
+    .toArray()
 }
 
-function findById (id) {
-  return new Promise((resolve, reject) => {
-    const db = dbo.getDb()
-    const myquery = { _id: ObjectId(id) }
-    db.collection('todo_objects').findOne(myquery, function (err, result) {
-      if (err) reject(err)
-      resolve(result)
-    })
-  })
+async function findById (id) {
+  const myquery = { _id: ObjectId(id) }
+  return await dbo.getDb().collection(collection).findOne(myquery)
 }
 
-function add (todo) {
-  return new Promise((resolve, reject) => {
-    const db = dbo.getDb()
-    db.collection('todo_objects').insertOne(todo, function (err, result) {
-      if (err) reject(err)
-      resolve(result)
-    })
-  })
+async function add (todo) {
+  return await dbo.getDb().collection(collection).insertOne(todo)
 }
 
-function update (id, todo) {
-  return new Promise((resolve, reject) => {
-    const db = dbo.getDb()
-    const myquery = { _id: ObjectId(id) }
-    db.collection('todo_objects').updateOne(
-      myquery,
-      { $set: todo },
-      function (err, result) {
-        if (err) reject(err)
-        resolve(result)
-      }
-    )
-  })
+async function update (id, todo) {
+  const myquery = { _id: ObjectId(id) }
+  return await dbo.getDb().collection(collection).updateOne(
+    myquery,
+    { $set: todo }
+  )
 }
 
-function remove (id, todo) {
-  return new Promise((resolve, reject) => {
-    const db = dbo.getDb()
-    const myquery = { _id: ObjectId(id) }
-    db.collection('todo_objects').deleteOne(myquery, function (err, result) {
-      if (err) reject(err)
-      resolve(result)
-    })
-  })
+async function remove (id, todo) {
+  const myquery = { _id: ObjectId(id) }
+  return await dbo.getDb().collection(collection).deleteOne(myquery)
 }
 
 module.exports = {

@@ -18,8 +18,12 @@ async function connectToServer () {
 function getDb () {
   return _db
 }
+function setDb (db) {
+  _db = db
+}
 
 module.exports = {
   connectToServer,
-  getDb
+  getDb,
+  setDb
 }
