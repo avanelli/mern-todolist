@@ -20,5 +20,5 @@ jobs:
       - name: Test-server
         run: |
           npm install
-          jest
+          npm jest
         working-directory: ./server
