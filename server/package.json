@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-      "dev": "nodemon server.js | pino-pretty",
-    "test": "jest --watchAll --detectOpenHandles --coverage true --verbose "
+    "dev": "nodemon server.js | pino-pretty",
+    "test:dev": "jest --watchAll --detectOpenHandles --coverage true --verbose ",
+    "test": "jest"
   },
   "author": "",
   "license": "MIT",
