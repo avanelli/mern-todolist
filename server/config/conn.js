@@ -15,11 +15,17 @@ async function connectToServer () {
   _db = client.db(process.env.ATLAS_DB)
 }
 
+async function closeConnection () {
+  // Use connect method to connect to the Server
+  await client.close
+}
+
 function getDb () {
   return _db
 }
 
 module.exports = {
   connectToServer,
+  closeConnection,
   getDb
 }
