@@ -1,18 +1,8 @@
-/* const bodyParser = require('body-parser')
-const express = require('express')
-const app = express()
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-
-const dbo = require('../config/conn')
-const request = require('supertest')
-const todoapiv1 = require('../controllers/todoController')
-*/
 const request = require('supertest')
 const dbo = require('../config/conn')
 const apiPath = '/api/todo/v1'
-const app = require('../app')
 
+const app = require('../app')
 beforeAll(async () => {
   await dbo.connectToServer()
 })
@@ -92,9 +82,9 @@ describe('Test Todo REST routes', function () {
   })
 
   test('db error for all routes', async () => {
-    // TODO try using spyOn to fake the gedDB function
-    const oldDbo = dbo.getDb()
-    dbo.setDb('')
+    // fake void db
+    jest.spyOn(dbo, 'getDb').mockImplementation(() => '')
+
     await request(app).get(apiPath)
       .expect(500)
 
@@ -103,25 +93,11 @@ describe('Test Todo REST routes', function () {
 
     await request(app).post(apiPath)
       .expect(500)
+
     await request(app).post(apiPath + '/123456789012')
       .expect(500)
+
     await request(app).delete(apiPath + '/123456789012')
       .expect(500)
-
-    dbo.setDb(oldDbo)
   })
-
-  /*
-  /insert
-  post
-
-insertedit
-XHRPOSThttp://localhost:5000/api/todo/v1/62f35da34e2e8eb1285e160d
-[HTTP/1.1 200 OK 155ms]
-
-1
-
-{"title":"prova edit","content":"prova edit content","level":"Low","dueDate":"2022-09-30T07:26:18.000Z"}
-
-*/
 })
