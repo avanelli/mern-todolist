@@ -9,8 +9,8 @@ https://www.codecontinue.com/article/deploy-react-node-mern-full-stack-app-to-di
 
 [X] Linter Standard JS 
 
-Unit Test Jest
-
+[X] Server Unit Test Jest
+[] Client unit stest
 Git Hooks
 https://medium.com/@jeanycyang/js-in-pipeline-5-testing-linting-and-git-hooks-f11108816611
 
