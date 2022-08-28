@@ -1,9 +1,8 @@
 import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
 import { act } from 'react-dom/test-utils'
 import { createRoot } from 'react-dom/client'
 
-import Navbar from './navbar'
+import Hello from './hello'
 
 let container = null
 let root = null
@@ -20,6 +19,16 @@ afterEach(() => {
 })
 
 it('renders with or without a name', () => {
-  act(() => { root.render(<BrowserRouter><Navbar /></BrowserRouter>) })
-  expect(container.textContent).toBe('Create Record')
+  act(() => { root.render(<Hello />) })
+  expect(container.textContent).toBe('Hey, stranger')
+
+  act(() => {
+    root.render(<Hello name='Jenny' />)
+  })
+  expect(container.textContent).toBe('Hello, Jenny!')
+
+  act(() => {
+    root.render(<Hello name='Margaret' />)
+  })
+  expect(container.textContent).toBe('Hello, Margaret!')
 })
