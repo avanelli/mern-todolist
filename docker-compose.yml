@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  client:
+    image: client
+    build:
+      context: client
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+
+  server:
+    image: server
+    build:
+      context: server
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      ATLAS_URI: mongodb://root:example@mongo:27017?authSource=admin&retryWrites=true&w=majority
+      ATLAS_DB: todo
+      PORT: 5000
+      DB_CONNECT_TIMEOUT: 10000
+      LOG_LEVEL: error      
+    ports:
+      - 5000:5000    
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./data:/data/db
+    ports:
+      - '27017:27017'
